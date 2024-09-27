@@ -1,4 +1,4 @@
-# RAID Manager
+# RAID Manager - BizonOS 2024
 
 RAID Manager is a graphical user interface (GUI) application for creating and managing RAID arrays on Ubuntu systems. It provides an easy-to-use interface for common RAID operations using the mdadm utility.
 
