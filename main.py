@@ -212,7 +212,7 @@ class RAIDManagerApp(QMainWindow):
 
     def update_app(self):
         try:
-            result = subprocess.run(['git', 'pull'], cwd='/Users/rubenfernandez/Downloads/raid_bizon', 
+            result = subprocess.run(['git', 'pull', 'origin', 'main'], 
                                   capture_output=True, text=True)
             if result.returncode == 0:
                 QMessageBox.information(self, "Success", "App updated successfully!\nPlease restart the application to apply changes.")
