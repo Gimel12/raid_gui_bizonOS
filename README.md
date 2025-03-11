@@ -23,8 +23,8 @@ RAID Manager is a graphical user interface (GUI) application for creating and ma
 
 1. Clone this repository:
    ```
-   git clone https://github.com/yourusername/raid-manager.git
-   cd raid-manager
+   cd /usr/local/share/dlbt_os/bza/raid/raid_gui_bizonOS
+
    ```
 
 2. Install the required dependencies:
