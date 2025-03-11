@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, QH
                              QLabel, QComboBox, QListWidget, QPushButton, QTabWidget, 
                              QTextEdit, QMessageBox, QListWidgetItem, QInputDialog)
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
+import subprocess
 from raid_functions import (refresh_devices, create_raid, refresh_raid_list, delete_raid, 
                             mount_raid, unmount_raid, add_drive_to_raid, create_filesystem)
 
@@ -28,6 +29,11 @@ class RAIDManagerApp(QMainWindow):
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
         self.layout = QVBoxLayout(self.central_widget)
+
+        # Add update button at the top
+        self.update_button = QPushButton("Update App")
+        self.update_button.clicked.connect(self.update_app)
+        self.layout.addWidget(self.update_button)
 
         self.tab_widget = QTabWidget()
         self.layout.addWidget(self.tab_widget)
@@ -203,6 +209,17 @@ class RAIDManagerApp(QMainWindow):
 
     def create_filesystem(self):
         create_filesystem(self)
+
+    def update_app(self):
+        try:
+            result = subprocess.run(['git', 'pull'], cwd='/Users/rubenfernandez/Downloads/raid_bizon/raid_gui_bizonOS', 
+                                  capture_output=True, text=True)
+            if result.returncode == 0:
+                QMessageBox.information(self, "Success", "App updated successfully!\nPlease restart the application to apply changes.")
+            else:
+                QMessageBox.warning(self, "Error", f"Failed to update app:\n{result.stderr}")
+        except Exception as e:
+            QMessageBox.warning(self, "Error", f"Failed to update app: {str(e)}")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
