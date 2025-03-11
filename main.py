@@ -23,7 +23,7 @@ class RAIDCreationWorker(QThread):
 class RAIDManagerApp(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Testing manager")
+        self.setWindowTitle("Bizon Raid Manager")
         self.setGeometry(100, 100, 800, 600)
 
         self.central_widget = QWidget()
